@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.old-post-message {
+	background: #ffeaf4;
+	border-radius: 5px;
+	color: #c53d43;
+	display: block;
+	font-size: 90%;
+	margin-bottom: 30px;
+	padding: 10px;
+}
+
+.old-post-message p:last-child {
+	margin-bottom: 0;
+}

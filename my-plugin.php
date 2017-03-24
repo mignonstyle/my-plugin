@@ -14,9 +14,11 @@
  * 1年以上更新されていない記事の期間（年）を計算
  */
 function my_old_post_year() {
+	// 投稿日で調べる
+	// $diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_date( 'Ymd' ) );
+
 	// 更新日で調べる
-	// $diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_modified_time( 'Ymd' ) );
-	$diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_date( 'Ymd' ) );
+	$diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_modified_time( 'Ymd' ) );
 	$diff = $diff / 60 / 60 / 24;
 	$diff = ( $diff > 365 ) ? floor( $diff / 365 ) : '';
 
@@ -62,3 +64,11 @@ function my_old_post_message_content( $content ) {
 	return $text . $content;
 }
 add_filter( 'the_content', 'my_old_post_message_content' );
+
+/**
+ * スタイルシートの登録
+ */
+function my_plugin_enqueue_scripts() {
+	wp_enqueue_style( 'my-plugin', plugins_url( 'css/my-style.css', __FILE__ ) );
+}
+add_action( 'wp_enqueue_scripts', 'my_plugin_enqueue_scripts' );

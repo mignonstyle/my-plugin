@@ -4,8 +4,12 @@ php:
   - 5.6
 
 env:
-    - WP_VERSION=latest WP_MULTISITE=0
-    - WP_VERSION=4.8 WP_MULTISITE=0
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=latest WP_MULTISITE=1
+  - WP_VERSION=4.8 WP_MULTISITE=0
+  - WP_VERSION=4.8 WP_MULTISITE=1
+
+script: phpunit
 
 sudo: false
 

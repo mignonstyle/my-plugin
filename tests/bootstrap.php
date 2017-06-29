@@ -2,15 +2,16 @@
 /**
  * PHPUnit bootstrap file
  *
- * @package Mw_Wp_Form
- *//*
+ * @package my-plugin
+ */
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 if ( ! $_tests_dir ) {
 	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
+
 // Give access to tests_add_filter() function.
 require_once $_tests_dir . '/includes/functions.php';
-*/
+
 /**
  * Manually load the plugin being tested.
  *//*

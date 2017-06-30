@@ -17,9 +17,7 @@
  */
 function my_old_post_year() {
 	// Investigate by posting date.
-	/*
-	$diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_date( 'Ymd' ) );
-	*/
+	/* $diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_date( 'Ymd' ) ); */
 
 	// Investigate by update date.
 	$diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_modified_time( 'Ymd' ) );
@@ -57,6 +55,7 @@ add_filter( 'widget_text', 'do_shortcode' );
 /**
  * Display message in front of text using filterhook.
  *
+ * @param string $content.
  * @return string
  */
 function my_old_post_message_content( $content ) {

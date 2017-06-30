@@ -2,7 +2,7 @@
 /**
  * Plugin Name: My Plugin
  * Plugin URI: https://github.com/mignonstyle/my-plugin
- * Description: 練習用のプラグインです
+ * Description: My Plugin is a practice plugin
  * Version: 0.1
  * Author: Mignon Style
  * Author URI: http://mignonstyle.com/
@@ -13,13 +13,15 @@
  */
 
 /**
- * 1年以上更新されていない記事の期間（年）を計算
+ * Calculate the period (year) of articles not updated more than 1 year.
  */
 function my_old_post_year() {
-	// 投稿日で調べる.
-	/* $diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_date( 'Ymd' ) ); */
+	// Investigate by posting date.
+	/*
+	$diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_date( 'Ymd' ) );
+	*/
 
-	// 更新日で調べる.
+	// Investigate by update date.
 	$diff = strtotime( date( 'Ymd' ) ) - strtotime( get_the_modified_time( 'Ymd' ) );
 	$diff = $diff / 60 / 60 / 24;
 	$diff = ( $diff > 365 ) ? floor( $diff / 365 ) : '';
@@ -28,13 +30,15 @@ function my_old_post_year() {
 }
 
 /**
- * ショートコードを登録
+ * Register shortcode.
+ *
+ * @return string
  */
 function my_old_post_message_shortcode() {
 	$year = my_old_post_year();
 
 	if ( ! empty( $year ) ) {
-		$text = sprintf( 'この記事は%d年以上前の記事です。内容が古い可能性がありますのでお気を付け下さい。', $year );
+		$text = sprintf( 'This article is an article over% d years ago. Please be aware that the contents may be old.', $year );
 		$text = '<div class="old-post-message"><p>' . esc_attr( $text ) . '</p></div>';
 	} else {
 		$text = '';
@@ -45,19 +49,21 @@ function my_old_post_message_shortcode() {
 add_shortcode( 'my_old_post_message', 'my_old_post_message_shortcode' );
 
 /**
- * ウィジェットでショートコードを使用する
+ * Use shortcode in widget.
  */
 add_filter( 'widget_text', 'shortcode_unautop' );
 add_filter( 'widget_text', 'do_shortcode' );
 
 /**
- * フィルターフックを使って本文の前にメッセージを表示
+ * Display message in front of text using filterhook.
+ *
+ * @return string
  */
 function my_old_post_message_content( $content ) {
 	$year = my_old_post_year();
 
 	if ( ! empty( $year ) ) {
-		$text = sprintf( 'この記事は%d年以上前の記事です。内容が古い可能性がありますのでお気を付け下さい。', $year );
+		$text = sprintf( 'This article is an article over% d years ago. Please be aware that the contents may be old.', $year );
 		$text = '<div class="old-post-message"><p>' . esc_attr( $text ) . '</p></div>';
 	} else {
 		$text = '';
@@ -68,7 +74,7 @@ function my_old_post_message_content( $content ) {
 add_filter( 'the_content', 'my_old_post_message_content' );
 
 /**
- * スタイルシートの登録
+ * Create style sheet.
  */
 function my_plugin_enqueue_scripts() {
 	wp_enqueue_style( 'my-plugin', plugins_url( 'css/my-style.css', __FILE__ ) );

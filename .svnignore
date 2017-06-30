@@ -1,14 +1,13 @@
 .DS_Store
 .git
-.github
 .gitignore
 .travis.yml
-README.md
 _site
 bin
 tests
 vendor
-phpunit.xml
+README.md
+phpunit.xml.dist
 phpcs.ruleset.xml
 composer.json
 composer.lock

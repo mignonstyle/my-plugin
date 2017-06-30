@@ -55,7 +55,7 @@ add_filter( 'widget_text', 'do_shortcode' );
 /**
  * Display message in front of text using filterhook.
  *
- * @param string $content.
+ * @param string $content Content.
  * @return string
  */
 function my_old_post_message_content( $content ) {

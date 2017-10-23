@@ -1,10 +1,11 @@
 # gitignore
 # Author: Mignon Style
-# version: 1.0
+# version: 1.1
 
 # Exclude any PSD/AI source
-#*.psd
-#*.ai
+*.psd
+*.ai
+_design
 
 # composer
 composer.phar
